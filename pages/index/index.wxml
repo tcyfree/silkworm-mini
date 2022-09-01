@@ -1,3 +1,20 @@
+<cu-custom bgColor="bg-gradual-blue">
+  <view slot="content">桑蚕疾病监测</view>
+</cu-custom>
+<view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
+  <view class="flex justify-center">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
+    <block wx:else>
+      <view class='text-center'>
+        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
+        <view class="padding">{{userInfo.nickName}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="text-center margin-top">
+  <text class="text-grey text-xl">{{motto}}</text>
+</view>
 <form report-submit='true' onsubmit="uploadImgs">
   <view class="cu-bar bg-white margin-top">
     <view class="action">
@@ -23,7 +40,7 @@
   </view>
 
   <view class="cu-bar bg-white">
-    <button class='submit bg-blue margin-top margin-bottom' form-type='submit'>提交</button>
+    <button class='submit bg-blue margin-top margin-bottom submit' form-type='submit'>提交</button>
   </view>
 
 </form>

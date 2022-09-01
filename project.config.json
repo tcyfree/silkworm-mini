@@ -1,25 +1,28 @@
 {
-  "appid": "wxa5a5845d3a5fb3ea",
-  "compileType": "miniprogram",
-  "libVersion": "2.26.0",
+  "description": "项目配置文件",
   "packOptions": {
     "ignore": [],
     "include": []
   },
   "setting": {
-    "coverView": true,
+    "urlCheck": true,
     "es6": true,
     "postcss": true,
     "minified": true,
-    "enhance": true,
-    "showShadowRootInWxmlPanel": true,
-    "packNpmRelationList": [],
+    "newFeature": true,
+    "autoAudits": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     }
   },
+  "compileType": "miniprogram",
+  "libVersion": "2.4.2",
+  "appid": "wxa5a5845d3a5fb3ea",
+  "projectname": "ColorUI-template",
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
   "condition": {},
   "editorSetting": {
     "tabIndent": "insertSpaces",

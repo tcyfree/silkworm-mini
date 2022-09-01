@@ -1,0 +1,5 @@
+.submit{
+  width: 500rpx;
+  height: 100rpx;
+  text-align: center;
+}
