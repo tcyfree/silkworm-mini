@@ -1,6 +1,19 @@
+.container {
+  display: flex !important;
+  flex-direction: column !important;
+}
 .submit {
   width: 500rpx;
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
+}
+.thead {
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.tbody-tr {
+  justify-content: center !important;
+  align-items: center !important;
 }

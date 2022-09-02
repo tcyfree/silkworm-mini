@@ -17,6 +17,13 @@
       </view>
     </view>
   </view>
+  <table-view 
+    style="display: flex; justify-content: center; margin-left: inherit;"
+    headers="{{tableHeader}}" 
+    data="{{ row }}" 
+    header-row-class-name="thead"
+    row-class-name="tbody-tr"
+  />
   <view class="cu-bar bg-white" bindtap="uploadImgs">
     <button class='bg-blue margin-top margin-bottom submit' form-type='submit'>提交</button>
   </view>

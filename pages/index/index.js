@@ -13,10 +13,43 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgList: [],
     imgMaxNumber: 1,
-    imageUrl:''
+    imageUrl: '',
+    tableHeader: [{
+        prop: 'category',
+        width: 150,
+        label: '目标类别',
+      },
+      {
+        prop: 'result',
+        width: 152,
+        label: '结果'
+      },
+      {
+        prop: 'measure',
+        width: 152,
+        label: '措施'
+      }
+    ],
+    stripe: true,
+    border: true,
+    outBorder: true,
+    row: [{
+      "category": "第1只蚕",
+      "result": '疑似为微粒子疾病',
+      "measure": '清理蚕袋，彻底消毒',
+    }, {
+      "category": "第2只蚕",
+      "result": '健康',
+      "measure": '无',
+    }, {
+      "category": "第3只蚕",
+      "result": '疑似为血液性脓病',
+      "measure": '分批提取，处理病蚕',
+    }],
+    msg: '暂无数据'
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -28,7 +61,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
-    } else if (this.data.canIUse){
+    } else if (this.data.canIUse) {
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
       app.userInfoReadyCallback = res => {
@@ -50,7 +83,7 @@ Page({
       })
     }
   },
-  getUserInfo: function(e) {
+  getUserInfo: function (e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
@@ -63,7 +96,7 @@ Page({
     wx.chooseImage({
       count: this.data.imgMaxNumber, //默认9
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album','camera'], //从相册选择
+      sourceType: ['album', 'camera'], //从相册选择
       success: (res) => {
         if (this.data.imgList.length != 0) {
           this.setData({
@@ -72,7 +105,7 @@ Page({
         } else {
           this.setData({
             imgList: res.tempFilePaths,
-            imageUrl:res.tempFilePaths
+            imageUrl: res.tempFilePaths
           })
         }
       }
@@ -117,7 +150,7 @@ Page({
       filePath: this.data.imageUrl[0],
       name: 'file',
       url: 'http://localhost:5003/upload',
-      success:function(res){
+      success: function (res) {
         console.log('[上传文件] 成功：', res)
         // json字符串转json对象
         let data = JSON.parse(res.data)
@@ -125,13 +158,13 @@ Page({
           title: "预测成功",
         })
         that.setData({
-          imgList:[data.draw_url]
+          imgList: [data.draw_url]
         })
         console.log('[上传文件] 成功：', that.data.imgList[0])
       },
       fail: function (res) {
         console.log('上传失败');
-        }
+      }
     })
   }
 })
