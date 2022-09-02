@@ -1,7 +1,8 @@
 //index.js
 //获取应用实例
-const app = getApp()
-
+const app = getApp();
+// 页面声明全局变量var that
+var that;
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -21,6 +22,7 @@ Page({
     })
   },
   onLoad: function () {
+    that = this;
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -109,27 +111,27 @@ Page({
 
   uploadImgs() {
     wx.showLoading({
-      title: '上传中'
+      title: 'AI预测中'
     })
-    const uploadTask = this.data.imgList.map(item => this.uploadPhoto(item))
-    Promise.all(uploadTask).then(result => {
-      console.log("上传结果", result)
-      let resultImageUrls = [];
-      for (const file of result) {
-        resultImageUrls.push(file.fileID);
-      }
-      console.log("上传后的图片云存储路径", resultImageUrls)
-      wx.hideLoading();
-      wx.showToast({
-        title: '上传图片成功',
-        icon: 'success'
-      })
-    }).catch(() => {
-      wx.hideLoading()
-      wx.showToast({
-        title: '上传图片错误',
-        icon: 'error'
-      })
+    wx.uploadFile({
+      filePath: this.data.imageUrl[0],
+      name: 'file',
+      url: 'http://localhost:5003/upload',
+      success:function(res){
+        console.log('[上传文件] 成功：', res)
+        // json字符串转json对象
+        let data = JSON.parse(res.data)
+        wx.showToast({
+          title: "预测成功",
+        })
+        that.setData({
+          imgList:[data.draw_url]
+        })
+        console.log('[上传文件] 成功：', that.data.imgList[0])
+      },
+      fail: function (res) {
+        console.log('上传失败');
+        }
     })
   }
 })
