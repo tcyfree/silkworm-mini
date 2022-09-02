@@ -11,7 +11,8 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     imgList: [],
-    imgMaxNumber: 4
+    imgMaxNumber: 1,
+    imageUrl:''
   },
   //事件处理函数
   bindViewTap: function() {
@@ -68,7 +69,8 @@ Page({
           })
         } else {
           this.setData({
-            imgList: res.tempFilePaths
+            imgList: res.tempFilePaths,
+            imageUrl:res.tempFilePaths
           })
         }
       }

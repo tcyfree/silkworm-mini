@@ -2,45 +2,22 @@
   <view slot="content">桑蚕疾病监测</view>
 </cu-custom>
 <view class="margin-xl padding-xl bg-white radius shadow shadow-lg">
-  <view class="flex justify-center">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn round bg-green shadow'> 获取头像昵称 </button>
-    <block wx:else>
-      <view class='text-center'>
-        <view class="cu-avatar xl round solids" style="background-image:url({{userInfo.avatarUrl}})"></view>
-        <view class="padding">{{userInfo.nickName}}</view>
-      </view>
-    </block>
-  </view>
-</view>
-<view class="text-center margin-top">
-  <text class="text-grey text-xl">{{motto}}</text>
-</view>
-<form report-submit='true' onsubmit="uploadImgs">
-  <view class="cu-bar bg-white margin-top">
-    <view class="action">
-      图片上传
-    </view>
-    <view class="action">
-      {{imgList.length}}/{{imgMaxNumber}}
-    </view>
-  </view>
-
-  <view class="cu-form-group">
-    <view class="grid col-4 grid-square flex-sub">
-      <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
-        <image src='{{imgList[index]}}' mode='aspectFill'></image>
-        <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
-          <text class="cuIcon-close"></text>
-        </view>
-      </view>
+  <view class="cu-form-group" wx:if="{{imgList.length<imgMaxNumber}}">
+    <view class="grid col-3 grid-square flex-sub" style="justify-content:center">
       <view class="solids" bindtap="ChooseImage" wx:if="{{imgList.length<imgMaxNumber}}">
         <text class="cuIcon-cameraadd"></text>
       </view>
     </view>
   </view>
-
-  <view class="cu-bar bg-white">
-    <button class='submit bg-blue margin-top margin-bottom submit' form-type='submit'>提交</button>
+  <view class="grid col-1 grid-square flex-sub" style="justify-content:center">
+    <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <image src='{{imgList[index]}}' mode='aspectFit'></image>
+      <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+        <text class="cuIcon-close"></text>
+      </view>
+    </view>
   </view>
-
-</form>
+  <view class="cu-bar bg-white" bindtap="uploadImgs">
+    <button class='bg-blue margin-top margin-bottom submit' form-type='submit'>提交</button>
+  </view>
+</view>
