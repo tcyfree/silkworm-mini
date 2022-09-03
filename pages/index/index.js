@@ -33,63 +33,15 @@ Page({
     stripe: true,
     border: true,
     outBorder: true,
-    row: [{
-      "category": "第1只蚕",
-      "result": '疑似为微粒子疾病',
-      "measure": '清理蚕袋，彻底消毒',
-    }, {
-      "category": "第2只蚕",
-      "result": '健康',
-      "measure": '无',
-    }, {
-      "category": "第3只蚕",
-      "result": '疑似为血液性脓病',
-      "measure": '分批提取，处理病蚕',
-    }],
+    row: '',
     msg: '暂无数据'
   },
   //事件处理函数
   bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+
   },
   onLoad: function () {
     that = this;
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
-  },
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
   },
 
   ChooseImage() {
@@ -157,8 +109,28 @@ Page({
         wx.showToast({
           title: "预测成功",
         })
+        console.log(data)
+        var details = []
+        var i = 0
+        var j = 0
+        for (var key in data.image_info) {
+          j = 0
+          details[i] = {}
+          details[i]['category'] = key
+          var items = data.image_info[key]
+          for (var k in items) {
+            j++;
+            if (j == 1) {
+              details[i]['result'] = items[k]
+            } else {
+              details[i]['measure'] = items[k]
+            }
+          }
+          i++;
+        }
         that.setData({
-          imgList: [data.draw_url]
+          imgList: [data.draw_url],
+          row: details
         })
         console.log('[上传文件] 成功：', that.data.imgList[0])
       },
