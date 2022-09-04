@@ -96,7 +96,8 @@ Page({
 
   uploadImgs() {
     wx.showLoading({
-      title: 'AI预测中'
+      title: 'AI预测中',
+      mask: true
     })
     wx.uploadFile({
       filePath: this.data.imageUrl[0],
@@ -136,6 +137,9 @@ Page({
       },
       fail: function (res) {
         console.log('上传失败');
+        wx.showToast({
+          title: '请求超时，请重新尝试',
+        })
       }
     })
   }
