@@ -136,9 +136,9 @@ Page({
         console.log('[上传文件] 成功：', that.data.imgList[0])
       },
       fail: function (res) {
-        console.log('上传失败');
+        console.log(res);
         wx.showToast({
-          title: '请求超时，请重新尝试',
+          title: '请求超时，请重新尝试' + res.errMsg,
         })
       }
     })
