@@ -102,7 +102,7 @@ Page({
     wx.uploadFile({
       filePath: this.data.imageUrl[0],
       name: 'file',
-      url: 'http://localhost:5003/upload',
+      url: 'https://cxy.ssdlab.cn/upload',
       success: function (res) {
         console.log('[上传文件] 成功：', res)
         // json字符串转json对象

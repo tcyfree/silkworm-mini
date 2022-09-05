@@ -3,7 +3,7 @@
   "projectname": "silkworm",
   "setting": {
     "compileHotReLoad": true,
-    "urlCheck": false
+    "urlCheck": true
   },
   "libVersion": "2.24.4"
 }
