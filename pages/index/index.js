@@ -76,7 +76,7 @@ Page({
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
           this.setData({
             imgList: this.data.imgList,
-            row:''
+            row: ''
           })
         }
       }
@@ -100,7 +100,7 @@ Page({
           this.setData({
             imgList: res.tempFilePaths,
             reupload: false,
-            row:''
+            row: ''
           })
         } else {
           this.setData({
@@ -156,9 +156,17 @@ Page({
       },
       fail: function (res) {
         console.log(res);
-        wx.showToast({
-          title: '请求超时，请重新尝试' + res.errMsg,
-        })
+        if (that.data.imgList.length === 0) {
+          wx.showToast({
+            title: '数据不能为空！',
+            icon: 'error',
+            duration: 2000
+          })
+        } else {
+          wx.showToast({
+            title: '请求超时，请重新尝试' + res.errMsg,
+          })
+        }
       }
     })
   }
