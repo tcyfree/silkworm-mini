@@ -8,7 +8,6 @@ Page({
     reupload: false,
     imgList: [],
     imgMaxNumber: 1,
-    imageUrl: '',
     tableHeader: [{
         prop: 'category',
         width: 150,
@@ -47,12 +46,11 @@ Page({
       success: (res) => {
         if (this.data.imgList.length != 0) {
           this.setData({
-            imgList: this.data.imgList.concat(res.tempFilePaths)
+            imgList: res.tempFilePaths
           })
         } else {
           this.setData({
-            imgList: res.tempFilePaths,
-            imageUrl: res.tempFilePaths
+            imgList: res.tempFilePaths
           })
         }
       }
@@ -75,8 +73,9 @@ Page({
         if (res.confirm) {
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
           this.setData({
-            imgList: this.data.imgList,
-            row: ''
+            imgList: [],
+            row: '',
+            reupload: false
           })
         }
       }
@@ -105,7 +104,6 @@ Page({
         } else {
           this.setData({
             imgList: res.tempFilePaths,
-            imageUrl: res.tempFilePaths
           })
         }
       }
@@ -118,7 +116,7 @@ Page({
       mask: true
     })
     wx.uploadFile({
-      filePath: this.data.imageUrl[0],
+      filePath: this.data.imgList[0],
       name: 'file',
       url: 'https://cxy.ssdlab.cn/upload',
       success: function (res) {
