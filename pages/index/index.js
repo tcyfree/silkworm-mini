@@ -44,14 +44,26 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], //从相册选择
       success: (res) => {
-        if (this.data.imgList.length != 0) {
-          this.setData({
-            imgList: res.tempFilePaths
+        let size = res.tempFiles.every(item => { //限制上传图片大小为5M
+          console.log(item.size)
+          return item.size <= 5242880 //获取图片的大小，单位B
+        })
+        if (!size) {
+          wx.showToast({
+            title: '上传图片不能大于5M!',
+            icon: 'none',
+            duration: 2000
           })
         } else {
-          this.setData({
-            imgList: res.tempFilePaths
-          })
+          if (this.data.imgList.length != 0) {
+            this.setData({
+              imgList: res.tempFilePaths
+            })
+          } else {
+            this.setData({
+              imgList: res.tempFilePaths
+            })
+          }
         }
       }
     });
@@ -95,17 +107,29 @@ Page({
       sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], //从相册选择
       success: (res) => {
-        if (this.data.imgList.length != 0) {
-          this.setData({
-            imgList: res.tempFilePaths,
-            reupload: false,
-            row: ''
+        let size = res.tempFiles.every(item => { //限制上传图片大小为5M
+          console.log(item.size)
+          return item.size <= 5242880 //获取图片的大小，单位B
+        })
+        if (!size) {
+          wx.showToast({
+            title: '上传图片不能大于5M!',
+            icon: 'none',
+            duration: 2000
           })
         } else {
-          this.setData({
-            imgList: res.tempFilePaths,
-            reupload: false,
-          })
+          if (this.data.imgList.length != 0) {
+            this.setData({
+              imgList: res.tempFilePaths,
+              reupload: false,
+              row: ''
+            })
+          } else {
+            this.setData({
+              imgList: res.tempFilePaths,
+              reupload: false,
+            })
+          }
         }
       }
     });
@@ -119,6 +143,7 @@ Page({
     wx.uploadFile({
       filePath: this.data.imgList[0],
       name: 'file',
+      // url: 'http://localhost:5003/upload',
       url: 'https://cxy.ssdlab.cn/upload',
       success: function (res) {
         console.log('[上传文件] 成功：', res)
