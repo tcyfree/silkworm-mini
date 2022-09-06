@@ -5,6 +5,7 @@ const app = getApp();
 var that;
 Page({
   data: {
+    reupload: false,
     imgList: [],
     imgMaxNumber: 1,
     imageUrl: '',
@@ -74,7 +75,8 @@ Page({
         if (res.confirm) {
           this.data.imgList.splice(e.currentTarget.dataset.index, 1);
           this.setData({
-            imgList: this.data.imgList
+            imgList: this.data.imgList,
+            row:''
           })
         }
       }
@@ -86,6 +88,28 @@ Page({
       cloudPath: `${Date.now()}-${Math.floor(Math.random(0, 1) * 10000000)}.png`,
       filePath
     })
+  },
+
+  reuploadImgs() {
+    wx.chooseImage({
+      count: this.data.imgMaxNumber, //默认9
+      sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], //从相册选择
+      success: (res) => {
+        if (this.data.imgList.length != 0) {
+          this.setData({
+            imgList: res.tempFilePaths,
+            reupload: false,
+            row:''
+          })
+        } else {
+          this.setData({
+            imgList: res.tempFilePaths,
+            imageUrl: res.tempFilePaths
+          })
+        }
+      }
+    });
   },
 
   uploadImgs() {
@@ -125,7 +149,8 @@ Page({
         }
         that.setData({
           imgList: [data.draw_url],
-          row: details
+          row: details,
+          reupload: true
         })
         console.log('[上传文件] 成功：', that.data.imgList[0])
       },

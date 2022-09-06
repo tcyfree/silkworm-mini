@@ -24,7 +24,10 @@
     header-row-class-name="thead"
     row-class-name="tbody-tr"
   />
-  <view class="cu-bar bg-white" bindtap="uploadImgs">
+  <view wx:if="{{!reupload}}" class="cu-bar bg-white" bindtap="uploadImgs">
     <button class='bg-blue margin-top margin-bottom submit' form-type='submit'>提交</button>
+  </view>
+  <view wx:else="{{reupload}}" class="cu-bar bg-white" bindtap="reuploadImgs">
+    <button class='bg-blue margin-top margin-bottom submit' form-type='submit'>重新选择</button>
   </view>
 </view>
