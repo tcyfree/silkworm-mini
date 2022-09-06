@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
 const app = getApp();
+let uploadSize = 3145728;
 // 页面声明全局变量var that
 var that;
 Page({
@@ -46,7 +47,7 @@ Page({
       success: (res) => {
         let size = res.tempFiles.every(item => { //限制上传图片大小为5M
           console.log(item.size)
-          return item.size <= 5242880 //获取图片的大小，单位B
+          return item.size <= uploadSize //获取图片的大小，单位B
         })
         if (!size) {
           wx.showToast({
@@ -109,7 +110,7 @@ Page({
       success: (res) => {
         let size = res.tempFiles.every(item => { //限制上传图片大小为5M
           console.log(item.size)
-          return item.size <= 5242880 //获取图片的大小，单位B
+          return item.size <= uploadSize //获取图片的大小，单位B
         })
         if (!size) {
           wx.showToast({
