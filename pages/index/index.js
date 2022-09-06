@@ -75,7 +75,7 @@ Page({
           this.setData({
             imgList: [],
             row: '',
-            reupload: false
+            reupload: true
           })
         }
       }
@@ -104,6 +104,7 @@ Page({
         } else {
           this.setData({
             imgList: res.tempFilePaths,
+            reupload: false,
           })
         }
       }
