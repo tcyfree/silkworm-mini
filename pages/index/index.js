@@ -11,17 +11,17 @@ Page({
     imgMaxNumber: 1,
     tableHeader: [{
         prop: 'category',
-        width: 150,
+        width: 160,
         label: '目标类别',
       },
       {
         prop: 'result',
-        width: 152,
+        width: 180,
         label: '结果'
       },
       {
         prop: 'measure',
-        width: 152,
+        width: 200,
         label: '措施'
       }
     ],
