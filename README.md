@@ -7,13 +7,13 @@
 ## 🌼  功能   
 - **桑蚕疾病监测**  
 - **好看的界面**  
-  借助colorUI实现界面，优雅简洁。并且用户达到图片上传上限后，有相应的提示和样式改变，会自动隐藏上传按钮。
+  借助colorUI实现界面，优雅简洁。
 
 ---
 ## 🎉  预览效果
 
 | 初始界面 | 上传预测 | 预测结果 |
-| ---- |  ----| ----| ----|
+| ---- |  ----| ----|
 |![init](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/init.png#pic_center=100x200) | ![AI predict](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/AI.png#pic_center=100x200) | ![result](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/result.png#pic_right=100x200) |
 
 ---
