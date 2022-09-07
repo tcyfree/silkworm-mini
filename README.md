@@ -1,10 +1,5 @@
 <div align="center">
 
-
-
-
-<div align="center">
-
 ## 桑蚕疾病监测-小程序端
 
 </div> 
@@ -19,7 +14,7 @@
 
 | 初始界面 | 上传预测 | 预测结果 |
 | ---- |  ----| ----| ----|
-|![init](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/init.png#pic_center=400x200) | ![AI predict](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/AI.png#pic_center=400x200) | ![result](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/result.png#pic_right=400x200) |
+|![init](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/init.png#pic_center=100x200) | ![AI predict](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/AI.png#pic_center=100x200) | ![result](https://raw.githubusercontent.com/tcyfree/silkworm-mini/develop/imgs/result.png#pic_right=100x200) |
 
 ---
 
