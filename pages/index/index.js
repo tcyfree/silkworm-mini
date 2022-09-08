@@ -58,11 +58,13 @@ Page({
         } else {
           if (this.data.imgList.length != 0) {
             this.setData({
-              imgList: res.tempFilePaths
+              imgList: res.tempFilePaths,
+              reupload: false
             })
           } else {
             this.setData({
-              imgList: res.tempFilePaths
+              imgList: res.tempFilePaths,
+              reupload: false
             })
           }
         }

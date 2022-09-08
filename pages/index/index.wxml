@@ -13,6 +13,9 @@
   <view class="grid col-1 grid-square flex-sub" style="justify-content:center">
     <view class="bg-img" wx:for="{{imgList}}" wx:key="index" bindtap="ViewImage" data-url="{{imgList[index]}}">
       <image src='{{imgList[index]}}' mode='aspectFill'></image>
+      <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+        <text class="cuIcon-close"></text>
+      </view>
     </view>
   </view>
   <view class="cu-bar bg-white" style="justify-content: center;">
